@@ -67,6 +67,6 @@ const App = () => {
 
 export default App;
 
-  // https://api.nytimes.com/svc/topstories/v2/world.json?api-key=ANbWf0Gyc18XxiPWyYbnrP4htpQFammZ
+  // https://api.nytimes.com/svc/topstories/v2/world.json?api-key=
   // https://api.nytimes.com/svc/search/v2/articlesearch.json?q=technology&api-key=
-  //https://api.nytimes.com/svc/search/v2/articlesearch.json?q=technology&api-key=ANbWf0Gyc18XxiPWyYbnrP4htpQFammZ
+  //https://api.nytimes.com/svc/search/v2/articlesearch.json?q=technology&api-key=
