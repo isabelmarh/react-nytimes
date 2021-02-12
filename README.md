@@ -2,6 +2,25 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## `General info`
+* [Build a News App with the NYTimes API & React JS](https://medium.com/javascript-in-plain-english/build-a-news-app-with-the-nytimes-api-react-js-c3b4440ede7f)
+* Using React Hooks and Axios
+* Click on the medium article to read how this project was made.
+
+## `Built With` 
+* React JS: A JavaScript library for building user interfaces
+* Axios: promise-based HTTP client
+* Material-UI: UI framework for React using Google’s Material Design
+
+## `Features` 
+* Using the NYTimes API
+* Create your developer account at https://developer.nytimes.com/
+* Create an app to get an api key at https://developer.nytimes.com/my-apps
+
+## `Snapshots` 
+![Search](https://user-images.githubusercontent.com/60557245/106368149-4e63c300-6326-11eb-9a2d-a8e9c0d2d0d7.png)
+![sections](https://user-images.githubusercontent.com/60557245/106368181-810dbb80-6326-11eb-9557-4e592a0c544f.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
