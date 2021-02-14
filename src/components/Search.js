@@ -43,8 +43,3 @@ Search.propTypes = {
 }
 
 export default Search;
-
-{/* <form className="form" onSubmit={handleSubmit}>
-                <input type="text" name="text" placeholder="Search articles" value={text} onChange={handleChange} />
-                <input type='submit' value='search' />
-            </form> */}
