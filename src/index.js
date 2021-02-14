@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename={process.env.REACT_APP_NYTIMES_API_KEY}>
       <App />
     </Router>
   </React.StrictMode>,
