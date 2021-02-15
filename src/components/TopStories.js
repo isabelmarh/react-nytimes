@@ -28,7 +28,8 @@ function TopStories({ loading, topStories, getTopArticles }) {
     const classes = useStyles();
     useEffect(() => {
         getTopArticles('world');
-    }, [getTopArticles]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
