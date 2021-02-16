@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import TopStory from './TopStory';
 import Spinner from './layouts/Spinner';
 import Grid from "@material-ui/core/Grid";
@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import { NavLink } from "react-router-dom";
+import NewsContext from '../context/NewsContext/newsContext';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -24,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function TopStories({ loading, topStories, getTopArticles }) {
+function TopStories() {
+    const newsContext = useContext(NewsContext);
+    const { loading, topStories, getTopArticles } = newsContext;
+
     const classes = useStyles();
     useEffect(() => {
         getTopArticles('world');

@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     res.send(res.data.response.docs);
 });
 
-router.get("/topstories", async (text) => {
+router.get("/search", async (text) => {
     const res = await axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${text}`, {
         headers: { Authorization: `Bearer ${process.env.REACT_APP_NYTIMES_API_KEY}` },
     });

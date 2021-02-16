@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Spinner from './layouts/Spinner';
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Article from './Article.js';
 import PropTypes from 'prop-types';
+import NewsContext from '../context/NewsContext/newsContext';
 
 const useStyles = makeStyles({
     card: {
@@ -16,7 +17,10 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Articles({ loading, articles }) {
+export default function Articles() {
+    const newsContext = useContext(NewsContext);
+    const { loading, articles } = newsContext;
+
     const classes = useStyles();
 
     return (
