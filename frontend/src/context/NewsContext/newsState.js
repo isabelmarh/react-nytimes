@@ -33,7 +33,7 @@ const NewsState = (props) => {
     const searchArticles = async (text) => {
         try {
             setLoading(true);
-            const res = await axios.get(`search/v2/articlesearch.json?q=${text}`);
+            const res = await axios.get('/search');
             dispatch({ type: "SEARCH_ARTICLES", payload: res.data.response.docs });
             setLoading(false);
         } catch (error) {
@@ -44,7 +44,7 @@ const NewsState = (props) => {
     const getTopArticles = async (section) => {
         try {
             setLoading(true);
-            const res = await axios.get(`https://api.nytimes.com/svc/topstories/v2/${section}.json`);
+            const res = await axios.get('/toparticles');
             dispatch({ type: "TOP_ARTICLES", payload: res.data.results });
             setLoading(false);
         } catch (error) {
@@ -53,10 +53,10 @@ const NewsState = (props) => {
     };
 
     return (
-        <NewsContext.Provider value={{...state, getArticles, searchArticles, getTopArticles}}>
+        <NewsContext.Provider value={{ ...state, getArticles, searchArticles, getTopArticles }}>
             {props.children}
         </NewsContext.Provider>
-    )
-}
+    );
+};
 
 export default NewsState;
