@@ -16,9 +16,9 @@ const reducerfn = (state, action) => {
                 ...state,
                 articles: payload,
             };
-        case "TOP_ARTICLES":
+        case "TOP_STORIES":
             return {
-                ...state, 
+                ...state,
                 topStories: payload
             };
         default:

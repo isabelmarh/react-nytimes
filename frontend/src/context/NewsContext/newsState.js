@@ -7,6 +7,7 @@ const NewsState = (props) => {
     const initialState = {
         loading: false,
         articles: [],
+        topstory: [],
         topStories: []
     };
 
@@ -22,8 +23,9 @@ const NewsState = (props) => {
     const getArticles = async () => {
         try {
             setLoading(true);
-            const res = await axios.get('/');
-            dispatch({ type: "GET_ARTICLES", payload: res.data.response.docs });
+            const api = await axios.get('/api');
+            console.log(api.data);
+            dispatch({ type: "GET_ARTICLES", payload: api.data.response.docs });
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -33,21 +35,24 @@ const NewsState = (props) => {
     const searchArticles = async (text) => {
         try {
             setLoading(true);
-            const res = await axios.get('/search');
-            dispatch({ type: "SEARCH_ARTICLES", payload: res.data.response.docs });
+            const api = await axios.get(`/api/search/q=${text}`);
+            dispatch({ type: "SEARCH_ARTICLES", payload: api.data.response.docs });
             setLoading(false);
         } catch (error) {
+            setLoading(false);
             console.log(error);
         }
     };
 
+
     const getTopArticles = async (section) => {
         try {
             setLoading(true);
-            const res = await axios.get('/toparticles');
-            dispatch({ type: "TOP_ARTICLES", payload: res.data.results });
+            const api = await axios.get(`/api/topstories/${section}`);
+            dispatch({ type: "TOP_STORIES", payload: api.data.results });
             setLoading(false);
         } catch (error) {
+            setLoading(false);
             console.log(error);
         }
     };

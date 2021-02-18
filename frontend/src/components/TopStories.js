@@ -25,11 +25,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function TopStories() {
+const TopStories = ({ topStories = [] }) => {
     const newsContext = useContext(NewsContext);
-    const { loading, topStories, getTopArticles } = newsContext;
+    const { loading,  getTopArticles } = newsContext;
 
     const classes = useStyles();
+
     useEffect(() => {
         getTopArticles('world');
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,11 +66,12 @@ function TopStories() {
                 )}
         </>
     );
-}
+};
 
 TopStories.propTypes = {
     loading: PropTypes.bool.isRequired,
     topStories: PropTypes.array.isRequired,
+    getTopArticles: PropTypes.func.isRequired
 };
 
 export default TopStories;

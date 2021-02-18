@@ -17,7 +17,7 @@ const App = () => {
             <Switch>
               <Route exact path="/" render={() => (
                 <>
-                  <Search/>
+                  <Search />
                   <NavLink to="/topstories">
                     <Link component="button" variant="body2">Go to top stories in World, Tech and U.S</Link>
                   </NavLink>

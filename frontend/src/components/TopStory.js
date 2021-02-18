@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import { makeStyles } from "@material-ui/core/styles";
+// import NewsContext from '../context/NewsContext/newsContext';
 
 const useStyles = makeStyles({
     card: {
@@ -18,7 +19,9 @@ const useStyles = makeStyles({
     },
 });
 
-const TopStory = ({ topstory }) => {
+const TopStory = ({ topstory = [] }) => {
+    // const newsContext = useContext(NewsContext);
+    // const { topstory } = newsContext;
     const classes = useStyles();
     return (
         <div className={classes.root} >
@@ -47,6 +50,6 @@ const TopStory = ({ topstory }) => {
 };
 
 TopStory.propTypes = {
-    topstory: PropTypes.object.isRequired,
+    topstory: PropTypes.array.isRequired,
 };
 export default TopStory;
