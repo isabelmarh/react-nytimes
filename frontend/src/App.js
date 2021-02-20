@@ -24,7 +24,7 @@ const App = () => {
                   <Articles />
                 </>
               )} />
-              <Route exact path="/topstories" render={() => (
+              <Route path="/topstories/:section" render={() => (
                 <>
                   <TopStories />
                 </>

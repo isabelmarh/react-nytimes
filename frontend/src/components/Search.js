@@ -7,7 +7,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import NewsContext from '../context/NewsContext/newsContext';
 
 const Search = () => {
-    const [text, setText] = useState('');
+    const [text, setText] = useState("");
     const newsContext = useContext(NewsContext);
     const { searchArticles } = newsContext;
 

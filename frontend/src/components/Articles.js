@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Spinner from './layouts/Spinner';
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,11 +17,16 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Articles() {
+const Articles = () => {
     const newsContext = useContext(NewsContext);
-    const { loading, articles } = newsContext;
+    const { loading, getArticles, articles } = newsContext;
 
     const classes = useStyles();
+
+    useEffect(() => {
+        getArticles();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
@@ -31,7 +36,7 @@ export default function Articles() {
                 ) : (
                         <div className={classes.root} >
                             <Grid container spacing={3}>
-                                {articles.map((article) => (
+                                {articles && articles.map((article) => (
                                     <Grid item xs={12} sm={4} key={article._id}>
                                         <Article article={article} />
                                     </Grid>
@@ -40,10 +45,11 @@ export default function Articles() {
                         </div>)}
         </>
     );
-}
+};
 
 Articles.propTypes = {
     loading: PropTypes.bool.isRequired,
     articles: PropTypes.array.isRequired,
 };
 
+export default Articles;

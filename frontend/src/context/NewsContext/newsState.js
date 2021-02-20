@@ -1,13 +1,15 @@
 import React, { useReducer } from 'react';
 import NewsContext from './newsContext';
 import NewsReducer from './newsReducer';
+import { SET_LOADING, SEARCH_ARTICLES, GET_ARTICLES, TOP_STORIES } from '../types';
 import axios from 'axios';
 
 const NewsState = (props) => {
     const initialState = {
         loading: false,
+        article: {},
         articles: [],
-        topstory: [],
+        topstory: {},
         topStories: []
     };
 
@@ -15,7 +17,7 @@ const NewsState = (props) => {
 
     const setLoading = (loading) => {
         dispatch({
-            type: "SET_LOADING",
+            type: SET_LOADING,
             payload: loading,
         });
     };
@@ -23,11 +25,12 @@ const NewsState = (props) => {
     const getArticles = async () => {
         try {
             setLoading(true);
-            const api = await axios.get('/api');
-            console.log(api.data);
-            dispatch({ type: "GET_ARTICLES", payload: api.data.response.docs });
+            const res = await axios.get("/api");
+            console.log(res.data.results);
+            dispatch({ type: GET_ARTICLES, payload: res.data.results });
             setLoading(false);
         } catch (error) {
+            setLoading(false);
             console.log(error);
         }
     };
@@ -35,8 +38,8 @@ const NewsState = (props) => {
     const searchArticles = async (text) => {
         try {
             setLoading(true);
-            const api = await axios.get(`/api/search/q=${text}`);
-            dispatch({ type: "SEARCH_ARTICLES", payload: api.data.response.docs });
+            const res = await axios.get(`/search/q=${text}`);
+            dispatch({ type: SEARCH_ARTICLES, payload: res.data.response.docs });
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -44,12 +47,11 @@ const NewsState = (props) => {
         }
     };
 
-
     const getTopArticles = async (section) => {
         try {
             setLoading(true);
-            const api = await axios.get(`/api/topstories/${section}`);
-            dispatch({ type: "TOP_STORIES", payload: api.data.results });
+            const api = await axios.get(`/topstories/${section}`);
+            dispatch({ type: TOP_STORIES, payload: api.data.results });
             setLoading(false);
         } catch (error) {
             setLoading(false);

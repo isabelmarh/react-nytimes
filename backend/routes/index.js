@@ -9,23 +9,26 @@ Key location: query;
 Parameter name: api - key
 */
 
-router.get("/", async (req, res) => {
+router.get("/api", async (req, res) => {
     try {
-        const api = await axios.get(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${API_KEY}`);
-        console.log(api.data.response.docs);
-        res.send(api.data.response.docs);
+
+        const api = await axios.get("https://api.nytimes.com/svc/topstories/v2/home.json?", {
+            headers: { Authorization: `api-key ${API_KEY}` },
+        });
+        res.send(api.data.results);
     }
     catch (err) {
         console.log(err.message);
     }
 });
 
+//https://api.nytimes.com/svc/topstories/v2/home.json?api-key=ANbWf0Gyc18XxiPWyYbnrP4htpQFammZ
+
 router.get("/search", async (req, res) => {
     console.log(req);
     try {
-        //const text = req.text.q;
-        const api = await axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${text}&api-key=${API_KEY}`);
-        console.log(api.data);
+        const query = req.query;
+        const api = await axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=${API_KEY}`);
         res.send(api.data.response.docs);
     }
     catch (err) {
@@ -34,10 +37,9 @@ router.get("/search", async (req, res) => {
 });
 
 router.get("/topstories/:section", async (req, res) => {
-    console.log(req.params);
     try {
-        const section = req.params.section;
-        const api = await axios.get(`https://api.nytimes.com/svc/topstories/v2/${section}.json?&api-key=${API_KEY}`);
+        const { section } = req.params;
+        const api = await axios.get(`https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${API_KEY}`);
         console.log(api.data);
         res.send(api.data.results);
     }

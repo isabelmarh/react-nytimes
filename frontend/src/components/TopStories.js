@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const TopStories = ({ topStories = [] }) => {
+const TopStories = () => {
     const newsContext = useContext(NewsContext);
-    const { loading,  getTopArticles } = newsContext;
+    const { loading, getTopArticles, topStories } = newsContext;
 
     const classes = useStyles();
 
@@ -55,9 +55,10 @@ const TopStories = ({ topStories = [] }) => {
 
                         <div className={classes.root} >
                             <Grid container spacing={3}>
-                                {topStories.map((topstory) => (
+                                {topStories && topStories.map((topstory) => (
                                     <Grid item xs={12} sm={4} key={topstory.url}>
-                                        <TopStory topstory={topstory} />
+                                        <TopStory topstory={topstory}
+                                        />
                                     </Grid>
                                 ))}
                             </Grid>
@@ -71,7 +72,7 @@ const TopStories = ({ topStories = [] }) => {
 TopStories.propTypes = {
     loading: PropTypes.bool.isRequired,
     topStories: PropTypes.array.isRequired,
-    getTopArticles: PropTypes.func.isRequired
+    getTopArticles: PropTypes.func.isRequired,
 };
 
 export default TopStories;
