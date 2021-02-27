@@ -19,12 +19,12 @@ const useStyles = makeStyles({
 
 const Articles = () => {
     const newsContext = useContext(NewsContext);
-    const { loading, getArticles, articles } = newsContext;
+    const { loading, searchArticles, articles } = newsContext;
 
     const classes = useStyles();
 
     useEffect(() => {
-        getArticles();
+        searchArticles();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

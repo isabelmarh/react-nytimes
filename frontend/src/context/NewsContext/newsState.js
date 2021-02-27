@@ -10,7 +10,7 @@ const NewsState = (props) => {
         article: {},
         articles: [],
         topstory: {},
-        topStories: []
+        topStories: [],
     };
 
     const [state, dispatch] = useReducer(NewsReducer, initialState);
@@ -25,21 +25,9 @@ const NewsState = (props) => {
     const getArticles = async () => {
         try {
             setLoading(true);
-            const res = await axios.get("/api");
-            console.log(res.data.results);
-            dispatch({ type: GET_ARTICLES, payload: res.data.results });
-            setLoading(false);
-        } catch (error) {
-            setLoading(false);
-            console.log(error);
-        }
-    };
-
-    const searchArticles = async (text) => {
-        try {
-            setLoading(true);
-            const res = await axios.get(`/search/q=${text}`);
-            dispatch({ type: SEARCH_ARTICLES, payload: res.data.response.docs });
+            const res = await axios.get("http://localhost:5000/");
+            console.log('api results', res);
+            dispatch({ type: GET_ARTICLES, payload: res.data });
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -50,8 +38,22 @@ const NewsState = (props) => {
     const getTopArticles = async (section) => {
         try {
             setLoading(true);
-            const api = await axios.get(`/topstories/${section}`);
-            dispatch({ type: TOP_STORIES, payload: api.data.results });
+            const res = await axios.get(`http://localhost:5000/topstories/${section}`);
+            console.log('top results', res);
+            dispatch({ type: TOP_STORIES, payload: res.data });
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.log(error);
+        }
+    };
+
+    const searchArticles = async (text) => {
+        try {
+            setLoading(true);
+            const res = await axios.get(`http://localhost:5000/search/${text}`);
+            console.log('search results', res);
+            dispatch({ type: SEARCH_ARTICLES, payload: res.data });
             setLoading(false);
         } catch (error) {
             setLoading(false);

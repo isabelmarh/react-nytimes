@@ -4,7 +4,6 @@ import Spinner from './layouts/Spinner';
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 // import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import NewsContext from '../context/NewsContext/newsContext';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
 
 const TopStories = () => {
     const newsContext = useContext(NewsContext);
-    const { loading, getTopArticles, topStories } = newsContext;
+    const { loading, getArticles, topStories } = newsContext;
 
     const classes = useStyles();
 
     useEffect(() => {
-        getTopArticles('world');
+        getArticles();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -41,12 +40,6 @@ const TopStories = () => {
                     <Spinner /> // or instead just type "Loading"
                 ) : (
                     <>
-                        <div className={classes.buttons}>
-                            <Button onClick={() => { getTopArticles('world'); }} variant="outlined" color="primary">World News</Button>
-                            <Button onClick={() => { getTopArticles('technology'); }} variant="outlined" color="secondary">Technology</Button>
-                            <Button onClick={() => { getTopArticles('us'); }} variant="outlined" color="default">US News</Button>
-                        </div>
-
                         <div className={classes.root} >
                             <Grid container spacing={3}>
                                 {topStories && topStories.map((topstory) => (

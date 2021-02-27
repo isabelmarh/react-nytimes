@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -14,10 +14,12 @@ const Search = () => {
     const handleChange = (e) => {
         setText(e.target.value);
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         searchArticles(text);
     };
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -42,8 +44,8 @@ const Search = () => {
     );
 };
 
-Search.propTypes = {
-    searchArticles: PropTypes.func.isRequired,
-};
+// Search.propTypes = {
+//     searchArticles: PropTypes.func.isRequired,
+// };
 
 export default Search;

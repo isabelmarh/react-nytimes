@@ -1,28 +1,24 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import PropTypes from 'prop-types';
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import { makeStyles } from "@material-ui/core/styles";
-import NewsContext from '../context/NewsContext/newsContext';
 
 const useStyles = makeStyles({
     card: {
         maxWidth: 345,
         boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
         backgroundColor: "#fafafa",
-        height: 500
+        height: 600
     },
     media: {
         height: 300,
     },
 });
 
-const TopStory = () => {
-    const newsContext = useContext(NewsContext);
-    const { topstory } = newsContext;
-
+const TopStory = ({ topstory }) => {
     const classes = useStyles();
     return (
         <div className={classes.root} >
@@ -50,7 +46,7 @@ const TopStory = () => {
     );
 };
 
-TopStory.propTypes = {
-    topstory: PropTypes.object.isRequired,
-};
+// TopStory.propTypes = {
+//     topstory: PropTypes.object.isRequired,
+// };
 export default TopStory;

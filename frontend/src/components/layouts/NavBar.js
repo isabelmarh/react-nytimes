@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,16 +26,18 @@ export default function NavBar() {
 
     return (
         <div className={classes.root} >
-            <AppBar position="static" className={classes.header}>
-                <Toolbar variant="dense">
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" color="inherit">
-                        News from the NYTimes
+            <NavLink to="/">
+                <AppBar position="static" className={classes.header}>
+                    <Toolbar variant="dense">
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" color="inherit">
+                            News from the NYTimes
           </Typography>
-                </Toolbar>
-            </AppBar>
+                    </Toolbar>
+                </AppBar>
+            </NavLink>
         </div>
     );
 }
